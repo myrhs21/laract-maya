@@ -14,11 +14,11 @@ class Nilai extends Model
 
     public function mengajar()
     {
-        return $this->belongTo(Mengajar::class,'mengajar_id', 'id');
+        return $this->belongsTo(Mengajar::class,'mengajar_id', 'id');
     }
     public function siswa()
     {
-        return $this->belongTo(Siswa::class,'siswa_id', 'id');
+        return $this->belongsTo(Siswa::class,'siswa_id', 'id');
     }
 
 }

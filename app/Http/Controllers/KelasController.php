@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\Jurusan;
+use App\Models\Mengajar;
+use App\Models\Siswa;
 
 class KelasController extends Controller
 {
@@ -72,7 +74,9 @@ class KelasController extends Controller
     public function edit(Kelas $kelas)
     {
         //
-        return view('kelas.edit', ['kelas' => $kelas 
+        return view('kelas.edit', [
+            'kelas' => $kelas,
+            'jurusan' => Jurusan::all() 
         ]);
     }
 
@@ -91,7 +95,7 @@ class KelasController extends Controller
             'jurusan_id' => 'required'
         ]);
         $kelas->update($data_kelas);
-        return redirect('/kelas/index')->with('success', 'Data kelas Berhasil Ditambah');
+        return redirect('/kelas/index')->with('success', 'Data kelas Berhasil Diupdate');
     }
 
     /**
@@ -102,23 +106,22 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
-        $jurusan = Jurusan::where('kelas_id', $kelas->id)->first();
+        $siswa = Siswa::where('kelas_id', $kelas->id)->first();
 
-        if($jurusan) {
-            return back()->with('error', "$kelas->nama_kelas masih digunakan di menu mengajar");
+        if($siswa) {
+            return back()->with('error', "$kelas->siswa_id masih digunakan di menu mengajar");
         }
 
 
-        $jurusan = Jurusan::where('kelas_id', $kelas->id)->first();
+        $mengajar = Mengajar::where('kelas_id', $kelas->id)->first();
 
-        if($jurusan) {
-            return back()->with('error', "$kelas->jurusan_id masih digunakan di menu mengajar");
+        if($mengajar) {
+            return back()->with('error', "$kelas->mengajar_id masih digunakan di menu mengajar");
         }
 
 
         $kelas->delete();
 
-        return redirect('/kelas/index')->with('success', 'Data Berhasil dihapus');
+        return back()->with('success', 'Data Berhasil dihapus');
     }
 }

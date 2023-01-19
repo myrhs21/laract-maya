@@ -7,6 +7,11 @@
             @csrf
             <table width="50%">
                 <tr>
+                    <td class="bar">NIS</td>
+                    <td class="bar">
+                        <input type="text" name="nis"></td>
+                </tr>
+                <tr>
                     <td class="bar">Nama Siswa</td>
                     <td class="bar">
                         <input type="text" name="nama_siswa"></td>

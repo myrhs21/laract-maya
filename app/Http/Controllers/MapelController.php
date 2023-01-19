@@ -87,7 +87,7 @@ class MapelController extends Controller
             'nama_mapel' => 'required',
         ]);
         $mapel->update($data_mapel);
-        return redirect('/mapel/index')->with('success', 'Data mapel Berhasil Ditambah');
+        return redirect('/mapel/index')->with('success', 'Data mapel Berhasil Diupdate');
 
     }
 

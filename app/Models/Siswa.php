@@ -11,10 +11,10 @@ class Siswa extends Model
 
     protected $table = 'siswas';
     protected $guarded = ['id'];
-    protected $primaryKey = 'id';
+
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class,'kelas_id', 'id');
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
 }

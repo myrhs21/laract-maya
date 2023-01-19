@@ -94,7 +94,7 @@ class GuruController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage.   n m             v
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

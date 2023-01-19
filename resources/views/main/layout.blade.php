@@ -19,7 +19,7 @@
                     <a href="/jurusan/index">JURUSAN</a>
                     <a href="/kelas/index">KELAS</a>
                     <a href="/siswa/index">SISWA</a>
-                    <a href="/mapel/index">MAPEL</a>
+                    <a href="/mapel/index">MATA PELAJARAN</a>
                     <a href="/mengajar/index">MENGAJAR</a>
                     {{-- @else --}}
                     <a href="/nilai/index">NILAI</a>

@@ -15,14 +15,14 @@ class Mengajar extends Model
 
     public function guru()
     {
-        return $this->belongTo(Guru::class,'guru_id', 'id');
+        return $this->belongsTo(Guru::class,'guru_id', 'id');
     }
     public function mapel()
     {
-        return $this->belongTo(Mapel::class,'mapel_id', 'id');
+        return $this->belongsTo(Mapel::class,'mapel_id', 'id');
     }
     public function kelas()
     {
-        return $this->belongTo(Kelas::class,'kelas_id', 'id');
+        return $this->belongsTo(Kelas::class,'kelas_id', 'id');
     }
 }

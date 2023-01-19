@@ -20,7 +20,10 @@ class MengajarController extends Controller
     {
         //
         return view('mengajar.index', [
-            'mengajar' => Mengajar::all()
+            'mengajar' => Mengajar::all(),
+            'guru' => Guru::all(),
+            'kelas' => Kelas::all(),
+            'mapel' => Mapel::all()
     ]);
     }
 
@@ -32,7 +35,13 @@ class MengajarController extends Controller
     public function create()
     {
         //
-        return view('mengajar.create');
+        return view('mengajar.create', [
+        'guru' => Guru::all(),
+        'mapel' => Mapel::all(),
+        'kelas' => Kelas::all()
+    ]);
+
+
     }
 
     /**
@@ -74,7 +83,10 @@ class MengajarController extends Controller
     public function edit(Mengajar $mengajar)
     {
         //
-        return view('mengajar.edit', ['mengajar' => $mengajar 
+        return view('mengajar.edit', ['mengajar' => $mengajar, 
+        'guru' => Guru::all(),
+        'mapel' => Mapel::all(),
+        'kelas' => Kelas::all()
         ]);
     }
 
@@ -106,29 +118,6 @@ class MengajarController extends Controller
     public function destroy(Mengajar $mengajar)
     {
         //
-        $guru = Guru::where('mengajar_id', $mengajar->id)->first();
-
-        if($guru) {
-            return back()->with('error', "$mengajar->id_guru masih digunakan di menu mengajar");
-        }
-
-
-
-        $kelas = Kelas::where('mengajar_id', $mengajar->id)->first();
-
-        if($kelas) {
-            return back()->with('error', "$mengajar->id_kelas masih digunakan di menu mengajar");
-        }
-
-
-
-        $mapel = Mapel::where('mengajar_id', $mengajar->id)->first();
-
-        if($mapel) {
-            return back()->with('error', "$mengajar->id_mapel masih digunakan di menu mengajar");
-        }
-
-
 
         $mengajar->delete();
 

@@ -15,7 +15,6 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
         return view('siswa.index', [
             'siswa' => Siswa::all()
     ]);
@@ -45,6 +44,7 @@ class SiswaController extends Controller
     public function store(Request $request, Siswa $siswa)
     {
         $data_siswa = $request->validate([
+            'nis' => 'required',
             'nama_siswa' => 'required',
             'jk' => 'required',
             'alamat' => 'required',
@@ -52,7 +52,7 @@ class SiswaController extends Controller
             'password' => 'required'
         ]);
         $siswa->create($data_siswa);
-        return redirect('/siswa/index')->with('success', 'Data Siswa Berhasil Diupdate');
+        return redirect('/siswa/index')->with('success', 'Data Siswa Berhasil Ditambah');
     }
 
     /**
@@ -75,7 +75,7 @@ class SiswaController extends Controller
     public function edit( Siswa $siswa)
     {
         //
-        return view('siswa.edit', ['siswa' => $siswa 
+        return view('siswa.edit', ['siswa' => $siswa, 'kelas' => Kelas::all()
         ]);
     }
 
@@ -90,10 +90,11 @@ class SiswaController extends Controller
     {
         //
         $data_siswa = $request->validate([
-            'nip' => 'required|numeric',
-            'nama_guru' => 'required',
+            'nis' => 'required',
+            'nama_siswa' => 'required',
             'jk' => 'required',
             'alamat' => 'required',
+            'kelas_id' => 'required',
             'password' => 'required'
         ]);
         $siswa->update($data_siswa);
@@ -109,11 +110,11 @@ class SiswaController extends Controller
     public function destroy(Siswa $siswa)
     {
         //
-        $kelas = Kelas::where('siswa_id', $siswa->id)->first();
+        // $kelas = Kelas::where('siswa_id', $siswa->id)->first();
 
-        if($kelas) {
-            return back()->with('error', "$siswa->nama_siswa masih digunakan di menu kelas");
-        }
+        // if($kelas) {
+        //     return back()->with('error', "$siswa->nama_siswa masih digunakan di menu kelas");
+        // }
 
         $siswa->delete();
 

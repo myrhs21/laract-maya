@@ -3,6 +3,12 @@
 <center>
     <br>
         <h2>UBAH DATA KELAS</h2>
+        @if (session('success'))
+        <p class="text-success">{{ session('success') }}</p>
+        @endif
+        @if (session('error'))
+        <p class="text-danger">{{ session('error') }}</p>
+        @endif
         <form method="post" action="/kelas/store">
             @csrf
             <table width="50%">
@@ -14,16 +20,15 @@
                 <tr>
                     <td class="bar">NAMA JURUSAN</td>
                     <td class="bar">
-                        <select name="kelas_id" id="">
-                            <option value=""></option>
-                            @foreach ($kelas as $k)
-                                <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
+                        <select name="jurusan_id" id="">
+                            @foreach ($jurusan as $j)
+                                <option value="{{ $j->id }}" {{ $j->id == $kelas->jurusan_id ? 'selected' : '' }}>{{ $j->nama_jurusan }}</option>
                             @endforeach
                         </select>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <center><button class="button-primary" type="submit"> SIMPAN </button></center>
+                        <center><button class="button-primary" type="submit"> UBAH </button></center>
                     </td>
                 </tr>
             </table>

@@ -86,7 +86,7 @@ class JurusanController extends Controller
             'nama_jurusan' => 'required',
         ]);
         $jurusan->update($data_jurusan);
-        return redirect('/jurusan/index')->with('success', 'Data Jurusan Berhasil Ditambah');
+        return redirect('/jurusan/index')->with('success', 'Data Jurusan Berhasil Diupdate');
     }
 
     /**
